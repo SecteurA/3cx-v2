@@ -30,10 +30,11 @@ export default function Hero() {
 
   return (
     <section className="relative bg-[#0A1428] mt-16">
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+      {/* Reduced py-20 to py-12 to decrease the height */}
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Content */}
-          <div className="space-y-8">            
+          <div className="space-y-6"> {/* Reduced space-y-8 to space-y-6 */}            
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-5xl xl:text-6xl">
               Transform Your <br />
               <span className="text-yellow-400">
@@ -46,7 +47,7 @@ export default function Hero() {
               communications with our professional solutions.
             </p>
 
-            <div className="space-y-4">
+            <div className="space-y-3"> {/* Reduced space-y-4 to space-y-3 */}
               {benefits.map((benefit) => (
                 <div key={benefit} className="flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5 text-yellow-400" />
@@ -77,14 +78,14 @@ export default function Hero() {
 
           {/* Right Column - Form */}
           <Card className="backdrop-blur-sm bg-white/[0.03] border-white/10">
-            <CardHeader>
+            <CardHeader className="space-y-1 pb-4"> {/* Reduced padding */}
               <CardTitle className="text-white">Get Started Today</CardTitle>
               <CardDescription className="text-white/70">
                 Fill out the form below for a free consultation
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-3"> {/* Reduced space-y-4 to space-y-3 */}
                 <div className="space-y-2">
                   <Input 
                     placeholder="Full Name" 
@@ -127,7 +128,7 @@ export default function Hero() {
                   <PhoneCall className="mr-2 h-4 w-4" />
                   Schedule Consultation
                 </Button>
-                <p className="text-xs text-center text-white/50 mt-4">
+                <p className="text-xs text-center text-white/50 mt-2"> {/* Reduced margin */}
                   By submitting this form, you agree to our{' '}
                   <a href="#" className="text-yellow-400 hover:underline">
                     Terms of Service
