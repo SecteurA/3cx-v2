@@ -28,7 +28,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative bg-[#0A1428] pt-16"> {/* Added padding-top here */}
+    <section className="relative bg-[#0A1428] mt-16"> {/* Changed pt-16 to mt-16 */}
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0A1428_1px,transparent_1px),linear-gradient(to_bottom,#1a365d_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
       
