@@ -29,25 +29,26 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative bg-[#0A1428]/80 mt-16">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0A1428_1px,transparent_1px),linear-gradient(to_bottom,#1a365d_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-20" />
+    <section className="relative bg-gradient-to-b from-background to-background/50 mt-16">
+      {/* Gradient background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary))_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-10" />
       
-      {/* Glowing orbs with reduced opacity */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full filter blur-3xl opacity-20 animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full filter blur-3xl opacity-20 animate-pulse delay-700" />
+      {/* Glowing orbs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full filter blur-3xl opacity-20 animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full filter blur-3xl opacity-20 animate-pulse delay-700" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Content */}
           <div className="space-y-6 animate-fade-in"> 
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-5xl xl:text-6xl animate-slide-up">
+            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-5xl xl:text-6xl animate-slide-up">
               Transform Your <br />
-              <span className="text-primary">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-secondary">
                 Business Communications
               </span>
             </h1>
             
-            <p className="text-lg text-white/70 max-w-xl animate-slide-up">
+            <p className="text-lg text-muted-foreground max-w-xl animate-slide-up">
               Get expert 3CX installation and support services. Enhance your business 
               communications with our professional solutions.
             </p>
@@ -60,7 +61,7 @@ export default function Hero() {
                   style={{ animationDelay: `${(index + 3) * 0.1}s` }}
                 >
                   <CheckCircle2 className="h-5 w-5 text-primary" />
-                  <span className="text-white/70">{benefit}</span>
+                  <span className="text-muted-foreground">{benefit}</span>
                 </div>
               ))}
             </div>
@@ -71,16 +72,16 @@ export default function Hero() {
             >
               <Button 
                 size="lg" 
-                className="bg-primary hover:bg-primary/90 text-white"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground group"
                 onClick={() => window.location.href = '#services'}
               >
                 View Pricing
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
               <Button 
                 size="lg" 
-                variant="outline"
-                className="text-white border-white/20 hover:bg-white/10"
+                variant="secondary"
+                className="hover:bg-secondary/90"
                 onClick={() => window.location.href = '#contact'}
               >
                 Learn More
@@ -89,10 +90,10 @@ export default function Hero() {
           </div>
 
           {/* Right Column - Form */}
-          <Card className="backdrop-blur-sm bg-white/[0.03] border-white/10 animate-fade-in">
+          <Card className="backdrop-blur-sm bg-card/50 border-primary/10 shadow-2xl shadow-primary/5 animate-fade-in">
             <CardHeader className="space-y-1 pb-4">
-              <CardTitle className="text-white">Get Started Today</CardTitle>
-              <CardDescription className="text-white/70">
+              <CardTitle className="text-foreground">Get Started Today</CardTitle>
+              <CardDescription>
                 Fill out the form below for a free consultation
               </CardDescription>
             </CardHeader>
@@ -102,7 +103,7 @@ export default function Hero() {
                   <Input 
                     placeholder="Full Name" 
                     required 
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-primary/20" 
+                    className="bg-background/50 border-input/20 focus-visible:ring-primary/20" 
                   />
                 </div>
                 <div className="space-y-2 animate-slide-up" style={{ animationDelay: '0.2s' }}>
@@ -110,7 +111,7 @@ export default function Hero() {
                     type="email" 
                     placeholder="Business Email" 
                     required 
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-primary/20" 
+                    className="bg-background/50 border-input/20 focus-visible:ring-primary/20" 
                   />
                 </div>
                 <div className="space-y-2 animate-slide-up" style={{ animationDelay: '0.3s' }}>
@@ -118,14 +119,14 @@ export default function Hero() {
                     type="tel" 
                     placeholder="Phone Number" 
                     required 
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-primary/20" 
+                    className="bg-background/50 border-input/20 focus-visible:ring-primary/20" 
                   />
                 </div>
                 <div className="space-y-2 animate-slide-up" style={{ animationDelay: '0.4s' }}>
                   <Input 
                     placeholder="Company Name" 
                     required 
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-primary/20" 
+                    className="bg-background/50 border-input/20 focus-visible:ring-primary/20" 
                   />
                 </div>
                 <div className="space-y-2 animate-slide-up" style={{ animationDelay: '0.5s' }}>
@@ -133,19 +134,19 @@ export default function Hero() {
                     placeholder="Number of Users" 
                     type="number" 
                     required 
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-primary/20" 
+                    className="bg-background/50 border-input/20 focus-visible:ring-primary/20" 
                   />
                 </div>
                 <Button 
                   type="submit" 
-                  className="w-full bg-primary hover:bg-primary/90 text-white animate-slide-up" 
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground animate-slide-up group" 
                   size="lg"
                   style={{ animationDelay: '0.6s' }}
                 >
-                  <PhoneCall className="mr-2 h-4 w-4" />
+                  <PhoneCall className="mr-2 h-4 w-4 group-hover:scale-110 transition-transform" />
                   Schedule Consultation
                 </Button>
-                <p className="text-xs text-center text-white/50 mt-2 animate-fade-in" style={{ animationDelay: '0.7s' }}>
+                <p className="text-xs text-center text-muted-foreground mt-2 animate-fade-in" style={{ animationDelay: '0.7s' }}>
                   By submitting this form, you agree to our{' '}
                   <a href="#" className="text-primary hover:underline">
                     Terms of Service
