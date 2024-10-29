@@ -1,7 +1,22 @@
+'use client';
+
 import { Github, Twitter, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 
 export default function Footer() {
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success('Subscribed successfully!', {
+      description: 'Thank you for subscribing to our newsletter.'
+    });
+    const form = e.target as HTMLFormElement;
+    const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement;
+    if (emailInput) {
+      emailInput.value = '';
+    }
+  };
+
   return (
     <footer className="bg-[#0A1428] text-white/90">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -86,11 +101,12 @@ export default function Footer() {
             <p className="text-sm text-white/70">
               Subscribe to our newsletter for updates and tips.
             </p>
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-2">
+            <form onSubmit={handleSubscribe} className="space-y-2">
               <input
                 type="email"
                 placeholder="Enter your email"
                 className="w-full px-3 py-2 text-sm bg-white/10 border border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent placeholder:text-white/50"
+                required
               />
               <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
                 Subscribe
