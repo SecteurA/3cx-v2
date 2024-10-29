@@ -23,7 +23,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { toast } from 'sonner';
-import { Mail, Phone, MessageSquare, Send } from 'lucide-react';
+import { MessageSquare, Send } from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -199,17 +199,6 @@ export default function ContactAndFAQ() {
                   </Button>
                 </form>
               </Form>
-
-              <div className="mt-6 space-y-3">
-                <div className="flex items-center gap-3 text-sm text-white/70">
-                  <Mail className="h-4 w-4 text-primary" />
-                  <span>support@3cx-support.com</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm text-white/70">
-                  <Phone className="h-4 w-4 text-primary" />
-                  <span>+1 (555) 000-0000</span>
-                </div>
-              </div>
             </div>
           </motion.div>
 
@@ -234,7 +223,7 @@ export default function ContactAndFAQ() {
                     value={`item-${index}`}
                     className="border-white/10"
                   >
-                    <AccordionTrigger className="text-sm text-white hover:text-primary">
+                    <AccordionTrigger className="text-sm text-white hover:text-yellow-400">
                       {faq.question}
                     </AccordionTrigger>
                     <AccordionContent className="text-sm text-white/70">
