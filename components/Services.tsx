@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Download, 
@@ -22,7 +23,7 @@ import { toast } from 'sonner';
 const services = [
   {
     title: 'Basic Installation',
-    price: '$100',
+    price: '100',
     description: 'Perfect for small businesses getting started with 3CX',
     features: [
       'Single instance setup',
@@ -36,7 +37,7 @@ const services = [
   },
   {
     title: 'Full Installation',
-    price: '$200',
+    price: '200',
     description: 'Complete solution for growing businesses',
     features: [
       'Multiple instance setup',
@@ -53,7 +54,7 @@ const services = [
   },
   {
     title: 'Support Ticket',
-    price: '$50',
+    price: '50',
     description: 'Quick help when you need it',
     features: [
       'Single issue resolution',
@@ -93,9 +94,12 @@ const featureVariants = {
 };
 
 export default function Services() {
-  const handleOrder = (service: string, price: string) => {
-    toast.success('Order initiated', {
-      description: `Processing your order for ${service} (${price})`,
+  const handleOrder = (service: { title: string; price: string }) => {
+    // Replace with your PayPal.me link
+    const paypalLink = `https://paypal.me/yourusername/${service.price}`;
+    window.open(paypalLink, '_blank');
+    toast.success('Redirecting to PayPal', {
+      description: 'Complete your payment to get started.',
     });
   };
 
@@ -156,7 +160,7 @@ export default function Services() {
                 <CardTitle className="text-2xl">{service.title}</CardTitle>
                 <CardDescription className="min-h-[4rem]">
                   <span className="text-3xl font-bold text-primary block mb-2">
-                    {service.price}
+                    ${service.price}
                   </span>
                   {service.description}
                 </CardDescription>
@@ -188,9 +192,12 @@ export default function Services() {
                       ? 'bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl' 
                       : 'hover:bg-primary hover:text-primary-foreground'
                   }`}
-                  onClick={() => handleOrder(service.title, service.price)}
+                  onClick={() => handleOrder({
+                    title: service.title,
+                    price: service.price
+                  })}
                 >
-                  Get Started
+                  Pay with PayPal
                 </Button>
               </CardFooter>
             </Card>
