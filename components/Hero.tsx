@@ -1,5 +1,4 @@
-{/* Update the Hero section's padding-top */}
-<content>'use client';
+'use client';
 
 import { motion } from 'framer-motion';
 import { PhoneCall, ArrowRight, CheckCircle2 } from 'lucide-react';
@@ -166,4 +165,4 @@ export default function Hero() {
       </div>
     </section>
   );
-}</content>
+}
