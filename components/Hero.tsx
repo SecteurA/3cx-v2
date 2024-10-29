@@ -108,4 +108,33 @@ export default function Hero() {
                   <div className="space-y-2">
                     <Input placeholder="Full Name" required className="bg-white/5 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-primary/20" />
                   </div>
-                  <div class
+                  <div className="space-y-2">
+                    <Input type="email" placeholder="Business Email" required className="bg-white/5 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-primary/20" />
+                  </div>
+                  <div className="space-y-2">
+                    <Input type="tel" placeholder="Phone Number" required className="bg-white/5 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-primary/20" />
+                  </div>
+                  <div className="space-y-2">
+                    <Input placeholder="Company Name" required className="bg-white/5 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-primary/20" />
+                  </div>
+                  <div className="space-y-2">
+                    <Input placeholder="Number of Users" type="number" required className="bg-white/5 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-primary/20" />
+                  </div>
+                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90" size="lg">
+                    <PhoneCall className="mr-2 h-4 w-4" />
+                    Schedule Consultation
+                  </Button>
+                  <p className="text-xs text-center text-white/50 mt-4">
+                    By submitting this form, you agree to our{' '}
+                    <a href="#" className="text-primary hover:underline">Terms of Service</a> and{' '}
+                    <a href="#" className="text-primary hover:underline">Privacy Policy</a>
+                  </p>
+                </form>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
