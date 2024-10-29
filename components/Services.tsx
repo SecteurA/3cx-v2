@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Download, 
@@ -19,6 +19,12 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { toast } from 'sonner';
+
+declare global {
+  interface Window {
+    paypal?: any;
+  }
+}
 
 const services = [
   {
@@ -94,14 +100,40 @@ const featureVariants = {
 };
 
 export default function Services() {
-  const handleOrder = (service: { title: string; price: string }) => {
-    // Replace with your PayPal.me link
-    const paypalLink = `https://paypal.me/yourusername/${service.price}`;
-    window.open(paypalLink, '_blank');
-    toast.success('Redirecting to PayPal', {
-      description: 'Complete your payment to get started.',
-    });
-  };
+  const paypalButtonsRef = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  useEffect(() => {
+    if (window.paypal) {
+      services.forEach((service) => {
+        const buttonContainer = paypalButtonsRef.current[service.title];
+        if (buttonContainer) {
+          window.paypal.Buttons({
+            createOrder: (_: any, actions: any) => {
+              return actions.order.create({
+                purchase_units: [{
+                  amount: {
+                    value: service.price
+                  },
+                  description: service.title
+                }]
+              });
+            },
+            onApprove: async (_: any, actions: any) => {
+              await actions.order.capture();
+              toast.success('Payment successful!', {
+                description: 'Thank you for your purchase. We will contact you shortly.',
+              });
+            },
+            onError: () => {
+              toast.error('Payment failed', {
+                description: 'Please try again or contact support.',
+              });
+            }
+          }).render(buttonContainer);
+        }
+      });
+    }
+  }, []);
 
   return (
     <section id="services" className="py-24 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl relative overflow-hidden">
@@ -186,19 +218,10 @@ export default function Services() {
               </CardContent>
 
               <CardFooter>
-                <Button 
-                  className={`w-full transition-all duration-300 ${
-                    service.highlighted 
-                      ? 'bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl' 
-                      : 'hover:bg-primary hover:text-primary-foreground'
-                  }`}
-                  onClick={() => handleOrder({
-                    title: service.title,
-                    price: service.price
-                  })}
-                >
-                  Pay with PayPal
-                </Button>
+                <div 
+                  ref={el => paypalButtonsRef.current[service.title] = el}
+                  className="w-full"
+                />
               </CardFooter>
             </Card>
           </motion.div>
