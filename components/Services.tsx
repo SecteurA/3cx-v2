@@ -1,15 +1,113 @@
 'use client';
 
-// ... (previous imports remain the same)
+import { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { CheckCircle2, Download, Settings, HeadphonesIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import PaymentModal from './PaymentModal';
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+    },
+  }),
+};
+
+const featureVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.3,
+    },
+  }),
+};
+
+const services = [
+  {
+    title: 'Basic Installation',
+    price: '100',
+    description: 'Perfect for small businesses getting started with 3CX',
+    features: [
+      'Single instance setup',
+      'Basic configuration',
+      'Up to 5 extensions',
+      'Standard support',
+    ],
+    icon: Download,
+    iconColor: 'text-blue-500',
+    gradient: 'from-blue-50 to-transparent',
+  },
+  {
+    title: 'Full Installation',
+    price: '200',
+    description: 'Complete solution for growing businesses',
+    features: [
+      'Multiple instance setup',
+      'Advanced configuration',
+      'Unlimited extensions',
+      'Priority support',
+      'Custom IVR setup',
+      'Call flow optimization',
+    ],
+    icon: Settings,
+    highlighted: true,
+    iconColor: 'text-purple-500',
+    gradient: 'from-purple-50 to-transparent',
+  },
+  {
+    title: 'Support Ticket',
+    price: '50',
+    description: 'Quick help when you need it',
+    features: [
+      'Single issue resolution',
+      'Remote assistance',
+      'Expert guidance',
+      '24-hour response time',
+    ],
+    icon: HeadphonesIcon,
+    iconColor: 'text-emerald-500',
+    gradient: 'from-emerald-50 to-transparent',
+  },
+];
 
 export default function Services() {
-  // ... (previous code remains the same until the Card rendering)
+  const [selectedService, setSelectedService] = useState<{
+    title: string;
+    price: string;
+  } | null>(null);
 
   return (
     <section id="services" className="py-24 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl relative overflow-hidden">
-      {/* Background Elements remain the same */}
-      
-      {/* Header section remains the same */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="text-center mb-16"
+      >
+        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary">
+          Choose Your Package
+        </h2>
+        <p className="mt-4 text-lg text-muted-foreground">
+          Select the service that best fits your needs
+        </p>
+      </motion.div>
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 relative">
         {services.map((service, index) => (
@@ -72,15 +170,28 @@ export default function Services() {
               </CardContent>
 
               <CardFooter>
-                <div 
-                  ref={el => paypalButtonsRef.current[service.title] = el}
-                  className="w-full"
-                />
+                <Button 
+                  className="w-full bg-primary hover:bg-primary/90"
+                  onClick={() => setSelectedService({
+                    title: service.title,
+                    price: service.price
+                  })}
+                >
+                  Order Now
+                </Button>
               </CardFooter>
             </Card>
           </motion.div>
         ))}
       </div>
+
+      {selectedService && (
+        <PaymentModal
+          isOpen={!!selectedService}
+          onClose={() => setSelectedService(null)}
+          service={selectedService}
+        />
+      )}
     </section>
   );
 }
