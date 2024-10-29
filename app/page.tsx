@@ -19,9 +19,9 @@ const WhatsAppWidget = dynamic(() => import('@/components/WhatsAppWidget'), {
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-gradient-to-b from-background to-secondary/20">
+    <main className="relative">
       <Navbar />
-      <div className="relative z-0">
+      <div className="pt-16"> {/* Add padding top equal to navbar height */}
         <Hero />
         <WhyChooseUs />
         <Features />
