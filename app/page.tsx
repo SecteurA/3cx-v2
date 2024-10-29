@@ -19,32 +19,18 @@ const WhatsAppWidget = dynamic(() => import('@/components/WhatsAppWidget'), {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-background to-secondary/20">
-      <div className="animate-fade-in">
-        <Navbar />
-      </div>
-      <div className="animate-fade-in">
+    <main className="relative min-h-screen bg-gradient-to-b from-background to-secondary/20">
+      <Navbar />
+      <div className="relative z-0">
         <Hero />
-      </div>
-      <div className="animate-slide-up">
         <WhyChooseUs />
-      </div>
-      <div className="animate-slide-up">
         <Features />
-      </div>
-      <div className="animate-slide-up">
         <Services />
-      </div>
-      <div className="animate-slide-up">
         <Testimonials />
-      </div>
-      <div className="animate-slide-up">
         <ContactAndFAQ />
-      </div>
-      <div className="animate-fade-in">
         <Footer />
+        <WhatsAppWidget />
       </div>
-      <WhatsAppWidget />
     </main>
   );
 }
