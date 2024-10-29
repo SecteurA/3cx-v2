@@ -25,10 +25,6 @@ export default function RootLayout({
         <meta property="og:description" content="Professional 3CX installation and support services with expert VoIP solutions." />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <script 
-          src="https://www.paypal.com/sdk/js?client-id=AU4U6xkdNP1tsWpw5iea5iYzMcmaZu8dB8TA7aan2Ybpk2o4zeL8gTNEY-oEGHUXCzeCcrXbZdL5CsRK&currency=USD"
-          async
-        />
       </head>
       <body className={inter.className}>
         {children}
