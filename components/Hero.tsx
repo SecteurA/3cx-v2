@@ -28,7 +28,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative bg-[#0A1428]">
+    <section className="relative bg-[#0A1428] pt-16"> {/* Added padding-top here */}
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0A1428_1px,transparent_1px),linear-gradient(to_bottom,#1a365d_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
       
@@ -38,7 +38,6 @@ export default function Hero() {
       
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-4rem)] flex items-center py-12">
         <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
-          {/* Rest of the Hero content remains the same */}
           {/* Left Column - Content */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
