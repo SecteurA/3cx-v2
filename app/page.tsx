@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <main className="relative">
       <Navbar />
-      <div className="pt-16"> {/* Add padding top equal to navbar height */}
+      <div> {/* Removed padding-top */}
         <Hero />
         <WhyChooseUs />
         <Features />
