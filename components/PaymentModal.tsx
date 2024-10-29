@@ -21,8 +21,25 @@ interface PaymentModalProps {
 
 export default function PaymentModal({ isOpen, onClose, service }: PaymentModalProps) {
   useEffect(() => {
-    if (isOpen && window.paypal) {
-      window.paypal.Buttons({
+    if (!isOpen) return;
+
+    // Load PayPal SDK dynamically only when modal is opened
+    const loadPayPalScript = async () => {
+      if (!window.paypal) {
+        const script = document.createElement('script');
+        script.src = `https://www.paypal.com/sdk/js?client-id=AU4U6xkdNP1tsWpw5iea5iYzMcmaZu8dB8TA7aan2Ybpk2o4zeL8gTNEY-oEGHUXCzeCcrXbZdL5CsRK&currency=USD`;
+        script.async = true;
+        
+        // Wait for script to load
+        await new Promise((resolve, reject) => {
+          script.onload = resolve;
+          script.onerror = reject;
+          document.head.appendChild(script);
+        });
+      }
+
+      // Initialize PayPal buttons
+      window.paypal?.Buttons({
         style: {
           layout: 'vertical',
           color: 'blue',
@@ -58,7 +75,21 @@ export default function PaymentModal({ isOpen, onClose, service }: PaymentModalP
           });
         }
       }).render('#paypal-button-container');
-    }
+    };
+
+    loadPayPalScript().catch(() => {
+      toast.error("Failed to load payment system", {
+        description: "Please try again or contact support.",
+      });
+    });
+
+    // Cleanup
+    return () => {
+      const container = document.getElementById('paypal-button-container');
+      if (container) {
+        container.innerHTML = '';
+      }
+    };
   }, [isOpen, service, onClose]);
 
   return (
