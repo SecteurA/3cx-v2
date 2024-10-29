@@ -8,29 +8,27 @@ import Navbar from '@/components/Navbar';
 
 // Dynamically import client components
 const Testimonials = dynamic(() => import('@/components/Testimonials'), {
-  ssr: false
+  ssr: false,
 });
 const ContactAndFAQ = dynamic(() => import('@/components/ContactAndFAQ'), {
-  ssr: false
+  ssr: false,
 });
 const WhatsAppWidget = dynamic(() => import('@/components/WhatsAppWidget'), {
-  ssr: false
+  ssr: false,
 });
 
 export default function Home() {
   return (
     <main className="relative">
       <Navbar />
-      <div> {/* Removed padding-top */}
-        <Hero />
-        <WhyChooseUs />
-        <Features />
-        <Services />
-        <Testimonials />
-        <ContactAndFAQ />
-        <Footer />
-        <WhatsAppWidget />
-      </div>
+      <Hero />
+      <WhyChooseUs />
+      <Features />
+      <Services />
+      <Testimonials />
+      <ContactAndFAQ />
+      <Footer />
+      <WhatsAppWidget />
     </main>
   );
 }
