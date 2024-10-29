@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -9,7 +9,6 @@ import {
   CardFooter,
   CardHeader,
 } from '@/components/ui/card';
-import Image from 'next/image';
 import { useState, useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 
@@ -18,7 +17,6 @@ const testimonials = [
     name: 'Sarah Thompson',
     role: 'Operations Manager',
     company: 'Tech Solutions Inc.',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330',
     content: 'The installation process was seamless, and the support team was incredibly helpful. Our communication system has never been better!',
     rating: 5
   },
@@ -26,7 +24,6 @@ const testimonials = [
     name: 'Michael Chen',
     role: 'IT Director',
     company: 'Global Innovations',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d',
     content: 'Switching to 3CX has transformed our business communications. The features and reliability are outstanding.',
     rating: 5
   },
@@ -34,7 +31,6 @@ const testimonials = [
     name: 'Emily Rodriguez',
     role: 'CEO',
     company: 'StartUp Hub',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80',
     content: 'Best decision we made for our growing startup. The scalability and cost-effectiveness are exactly what we needed.',
     rating: 5
   },
@@ -42,7 +38,6 @@ const testimonials = [
     name: 'David Wilson',
     role: 'Sales Director',
     company: 'Market Leaders Ltd',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e',
     content: 'The mobile integration has allowed our sales team to stay connected wherever they are. Excellent service!',
     rating: 5
   },
@@ -50,7 +45,6 @@ const testimonials = [
     name: 'Lisa Park',
     role: 'Customer Service Manager',
     company: 'Support Pro',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956',
     content: 'The call quality and reliability have significantly improved our customer service capabilities. Highly recommended!',
     rating: 5
   },
@@ -58,15 +52,13 @@ const testimonials = [
     name: 'James Foster',
     role: 'Technical Lead',
     company: 'Innovate Systems',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7',
-    content: "The technical support team is outstanding. They've helped us customize the system perfectly for our needs.",
+    content: "The technical support team is outstanding. They have helped us customize the system perfectly for our needs.",
     rating: 5
   },
   {
     name: 'Anna Martinez',
     role: 'HR Director',
     company: 'People First Co',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb',
     content: 'Implementation was smooth and the training provided was excellent. Our team adapted quickly to the new system.',
     rating: 5
   },
@@ -74,15 +66,13 @@ const testimonials = [
     name: 'Robert Kim',
     role: 'Managing Director',
     company: 'Digital Solutions',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d',
-    content: "We've seen a significant ROI since implementing 3CX. The value for money is exceptional.",
+    content: "We have seen a significant ROI since implementing 3CX. The value for money is exceptional.",
     rating: 5
   },
   {
     name: 'Sophie Turner',
     role: 'Communications Manager',
     company: 'Media Group',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2',
     content: 'The video conferencing features have revolutionized our remote meetings. Crystal clear quality every time.',
     rating: 5
   }
@@ -118,7 +108,7 @@ export default function Testimonials() {
             What Our Clients Say
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Don't just take our word for it - hear from our satisfied customers
+            Do not just take our word for it - hear from our satisfied customers
           </p>
         </motion.div>
 
@@ -134,24 +124,22 @@ export default function Testimonials() {
                   transition={{ delay: index * 0.1 }}
                   className="flex-[0_0_33.333%] min-w-0"
                 >
-                  <Card className="h-full bg-card hover:shadow-lg transition-shadow duration-300">
-                    <CardHeader className="flex flex-row items-center gap-4">
-                      <Image
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        width={48}
-                        height={48}
-                        className="rounded-full object-cover"
-                      />
+                  <Card className="h-full bg-card hover:shadow-lg transition-shadow duration-300 relative overflow-hidden">
+                    <div className="absolute top-4 right-4 text-primary/10">
+                      <Quote className="h-12 w-12" />
+                    </div>
+                    <CardHeader>
                       <div>
-                        <h4 className="font-semibold">{testimonial.name}</h4>
+                        <h4 className="font-semibold text-lg">{testimonial.name}</h4>
                         <p className="text-sm text-muted-foreground">
                           {testimonial.role} at {testimonial.company}
                         </p>
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-muted-foreground">{testimonial.content}</p>
+                      <p className="text-muted-foreground italic relative">
+                        "{testimonial.content}"
+                      </p>
                     </CardContent>
                     <CardFooter>
                       <div className="flex text-yellow-400">
