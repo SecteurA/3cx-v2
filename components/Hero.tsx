@@ -33,13 +33,7 @@ export default function Hero() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Content */}
-          <div className="space-y-8">
-            <div className="inline-flex items-center rounded-full border border-yellow-400/20 px-4 py-1.5 text-sm font-medium bg-white/5 backdrop-blur-sm">
-              <span className="text-yellow-400">Professional 3CX Solutions</span>
-              <div className="mx-2 h-4 w-[1px] bg-yellow-400/20" />
-              <span className="text-white/70">Trusted by 500+ businesses</span>
-            </div>
-            
+          <div className="space-y-8">            
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-5xl xl:text-6xl">
               Transform Your <br />
               <span className="text-yellow-400">
