@@ -4,11 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const menuItems = [
   { label: 'Home', href: '#' },
@@ -20,20 +16,18 @@ const menuItems = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      <nav 
+      <nav
         className={`h-16 transition-all duration-300 ${
           isScrolled 
             ? 'bg-[#0A1428]/95 backdrop-blur-md shadow-lg'
@@ -65,7 +59,7 @@ export default function Navbar() {
                   {item.label}
                 </a>
               ))}
-              <Button 
+              <Button
                 className="bg-primary hover:bg-primary/90"
                 onClick={() => window.location.href = '#services'}
               >
@@ -77,17 +71,17 @@ export default function Navbar() {
             <div className="md:hidden">
               <Sheet>
                 <SheetTrigger asChild>
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
+                  <Button
+                    variant="ghost"
+                    size="icon"
                     className="text-white hover:bg-white/10"
                     aria-label="Open menu"
                   >
                     <Menu className="h-6 w-6" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent 
-                  side="right" 
+                <SheetContent
+                  side="right"
                   className="w-[300px] bg-[#0A1428]/95 border-white/10"
                 >
                   <div className="flex flex-col space-y-6 mt-8">
@@ -96,17 +90,13 @@ export default function Navbar() {
                         key={item.label}
                         href={item.href}
                         className="text-lg font-medium text-white hover:text-primary transition-colors"
-                        onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {item.label}
                       </a>
                     ))}
-                    <Button 
+                    <Button
                       className="mt-4 bg-primary hover:bg-primary/90 w-full"
-                      onClick={() => {
-                        window.location.href = '#services';
-                        setIsMobileMenuOpen(false);
-                      }}
+                      onClick={() => window.location.href = '#services'}
                     >
                       Get Started
                     </Button>
