@@ -28,7 +28,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen bg-[#0A1428] overflow-hidden">
+    <section className="relative pt-16 min-h-screen bg-[#0A1428] overflow-hidden">
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0A1428_1px,transparent_1px),linear-gradient(to_bottom,#1a365d_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]" />
       
@@ -72,11 +72,19 @@ export default function Hero() {
             </div>
 
             <div className="flex items-center gap-4">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 group">
+              <Button 
+                size="lg" 
+                className="bg-primary hover:bg-primary/90 group"
+                onClick={() => window.location.href = '#services'}
+              >
                 View Pricing
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white border-0">
+              <Button 
+                size="lg" 
+                className="bg-emerald-600 hover:bg-emerald-700 text-white border-0"
+                onClick={() => window.location.href = '#features'}
+              >
                 Learn More
               </Button>
             </div>
