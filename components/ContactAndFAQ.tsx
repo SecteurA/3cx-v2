@@ -23,6 +23,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { toast } from 'sonner';
+import { Mail, Phone, MessageSquare, Send } from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -81,7 +82,7 @@ export default function ContactAndFAQ() {
   }
 
   return (
-    <section id="contact" className="py-24 bg-muted/50">
+    <section id="contact" className="py-24 bg-[#0A1428]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0 }}
@@ -89,10 +90,10 @@ export default function ContactAndFAQ() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-white">
             Contact & Support
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-4 text-lg text-white/70">
             Get in touch with us or find answers to common questions
           </p>
         </motion.div>
@@ -104,8 +105,14 @@ export default function ContactAndFAQ() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="bg-background rounded-lg p-5 shadow-sm">
-              <h3 className="text-xl font-semibold mb-4">Get in Touch</h3>
+            <div className="bg-white/[0.03] backdrop-blur-lg rounded-lg p-6 border border-white/10 shadow-xl">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <MessageSquare className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-white">Get in Touch</h3>
+              </div>
+
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                   <FormField
@@ -113,9 +120,13 @@ export default function ContactAndFAQ() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm">Name</FormLabel>
+                        <FormLabel className="text-sm text-white/90">Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} className="h-9" />
+                          <Input 
+                            placeholder="John Doe" 
+                            {...field} 
+                            className="h-10 bg-white/5 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-primary/20" 
+                          />
                         </FormControl>
                         <FormMessage className="text-xs" />
                       </FormItem>
@@ -126,9 +137,13 @@ export default function ContactAndFAQ() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm">Email</FormLabel>
+                        <FormLabel className="text-sm text-white/90">Email</FormLabel>
                         <FormControl>
-                          <Input placeholder="john@example.com" {...field} className="h-9" />
+                          <Input 
+                            placeholder="john@example.com" 
+                            {...field} 
+                            className="h-10 bg-white/5 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-primary/20" 
+                          />
                         </FormControl>
                         <FormMessage className="text-xs" />
                       </FormItem>
@@ -139,9 +154,13 @@ export default function ContactAndFAQ() {
                     name="phone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm">Phone</FormLabel>
+                        <FormLabel className="text-sm text-white/90">Phone</FormLabel>
                         <FormControl>
-                          <Input placeholder="+1 (555) 000-0000" {...field} className="h-9" />
+                          <Input 
+                            placeholder="+1 (555) 000-0000" 
+                            {...field} 
+                            className="h-10 bg-white/5 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-primary/20" 
+                          />
                         </FormControl>
                         <FormMessage className="text-xs" />
                       </FormItem>
@@ -152,11 +171,11 @@ export default function ContactAndFAQ() {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm">Message</FormLabel>
+                        <FormLabel className="text-sm text-white/90">Message</FormLabel>
                         <FormControl>
                           <Textarea 
                             placeholder="Tell us about your needs..."
-                            className="min-h-[80px] resize-none"
+                            className="min-h-[100px] resize-none bg-white/5 border-white/10 text-white placeholder:text-white/50 focus-visible:ring-primary/20"
                             {...field}
                           />
                         </FormControl>
@@ -166,13 +185,31 @@ export default function ContactAndFAQ() {
                   />
                   <Button 
                     type="submit" 
-                    className="w-full h-9 text-sm"
+                    className="w-full h-11 bg-primary hover:bg-primary/90 text-white group"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    {isSubmitting ? (
+                      'Sending...'
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
                   </Button>
                 </form>
               </Form>
+
+              <div className="mt-6 space-y-3">
+                <div className="flex items-center gap-3 text-sm text-white/70">
+                  <Mail className="h-4 w-4 text-primary" />
+                  <span>support@3cx-support.com</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm text-white/70">
+                  <Phone className="h-4 w-4 text-primary" />
+                  <span>+1 (555) 000-0000</span>
+                </div>
+              </div>
             </div>
           </motion.div>
 
@@ -182,13 +219,27 @@ export default function ContactAndFAQ() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="bg-background rounded-lg p-5 shadow-sm">
-              <h3 className="text-xl font-semibold mb-4">Frequently Asked Questions</h3>
+            <div className="bg-white/[0.03] backdrop-blur-lg rounded-lg p-6 border border-white/10 shadow-xl">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <MessageSquare className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-white">Frequently Asked Questions</h3>
+              </div>
+
               <Accordion type="single" collapsible className="w-full">
                 {faqs.map((faq, index) => (
-                  <AccordionItem key={index} value={`item-${index}`}>
-                    <AccordionTrigger className="text-sm">{faq.question}</AccordionTrigger>
-                    <AccordionContent className="text-sm">{faq.answer}</AccordionContent>
+                  <AccordionItem 
+                    key={index} 
+                    value={`item-${index}`}
+                    className="border-white/10"
+                  >
+                    <AccordionTrigger className="text-sm text-white hover:text-primary">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-sm text-white/70">
+                      {faq.answer}
+                    </AccordionContent>
                   </AccordionItem>
                 ))}
               </Accordion>
