@@ -12,6 +12,8 @@ import {
 
 const menuItems = [
   { label: 'Home', href: '#' },
+  { label: 'Why us ?', href: '#why-us' },
+  { label: 'Features', href: '#features' },
   { label: 'Services', href: '#services' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -46,7 +48,10 @@ export default function Navbar() {
                 {item.label}
               </a>
             ))}
-            <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button 
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
+              onClick={() => window.location.href = '#services'}
+            >
               Get Started
             </Button>
           </div>
@@ -71,7 +76,13 @@ export default function Navbar() {
                       {item.label}
                     </a>
                   ))}
-                  <Button className="mt-4 bg-primary text-primary-foreground hover:bg-primary/90">
+                  <Button 
+                    className="mt-4 bg-primary text-primary-foreground hover:bg-primary/90"
+                    onClick={() => {
+                      window.location.href = '#services';
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
                     Get Started
                   </Button>
                 </div>
