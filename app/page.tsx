@@ -21,13 +21,13 @@ export default function Home() {
   return (
     <main className="relative">
       <Navbar />
-      <div> {/* Ensure no padding or margin here */}
+      <div>
         <Hero />
         <WhyChooseUs />
         <Features />
         <Services />
-        <Testimonials />
         <ContactAndFAQ />
+        <Testimonials />
         <Footer />
         <WhatsAppWidget />
       </div>
